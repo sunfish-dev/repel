@@ -29,7 +29,7 @@ You'll need:
 - GCC (MinGW specifically. Should come with make)
 - git
 
-1. Clone and build repel
+1. Clone and build repel or download the [most recent version of repel](https://github.com/sunfish-dev/repel/releases)
 ```
 git clone https://github.com/sunfish-dev/repel.git
 cd repel/build
