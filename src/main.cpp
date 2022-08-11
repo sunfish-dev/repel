@@ -9,7 +9,7 @@
 #define TOO_MANY_ARGS_ERROR(expect, provided) if (provided > expect) Crash(1, "too many arguments provided\n")
 #define EXPECT_ARGS_ERROR(expect, provided) TOO_FEW_ARGS_ERROR(expect, provided); TOO_MANY_ARGS_ERROR(expect, provided)
 
-#define REPEL_VERSION "0.1"
+#define REPEL_VERSION "v1.0.0"
 
 std::vector<fs::path> GetAllFiles(const fs::path& path)
 {
@@ -67,14 +67,14 @@ int main(int argc, char** argv)
 
             if (fs::is_regular_file(path))
             {
-                WriteFile(path, StringReplace(ReadFile(path), argv[i+2], argv[i+3]));
+                WriteFile(path.string(), StringReplace(ReadFile(path.string()), argv[i+2], argv[i+3]));
             }
             else if (fs::is_directory(path))
             {
                 auto files = GetAllFiles(path);
                 
                 for (auto file : files)
-                    WriteFile(file, StringReplace(ReadFile(file), argv[i+2], argv[i+3]));
+                    WriteFile(file.string(), StringReplace(ReadFile(file.string()), argv[i+2], argv[i+3]));
             }
             else PATH_EXIST_ERROR(path);
 
@@ -90,14 +90,14 @@ int main(int argc, char** argv)
 
             if (fs::is_regular_file(path))
             {
-                WriteFile(path, StringReplace(ReadFile(path), argv[i+2], ""));
+                WriteFile(path.string(), StringReplace(ReadFile(path.string()), argv[i+2], ""));
             }
             else if (fs::is_directory(path))
             {
                 auto files = GetAllFiles(path);
                 
                 for (auto file : files)
-                    WriteFile(file, StringReplace(ReadFile(file), argv[i+2], ""));
+                    WriteFile(file.string(), StringReplace(ReadFile(file.string()), argv[i+2], ""));
             }
             else PATH_EXIST_ERROR(path);
 
